@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	 <class name="com.domain.Product" table="Product" >
+	 	<id name="objId" type="java.lang.Integer">
+		    <column name="objId" />
+		    <generator class="native" />
+       	</id>
+		<property name="productId" >
+			<column name="productId" />
+		</property>
+		<property name="productName" >
+			<column name="productName" />
+		</property>
+		<property name="feature" >
+			<column name="feature" />
+		</property>
+		<property name="description" >
+			<column name="description" />
+		</property>
+		<property name="meaning" >
+			<column name="meaning" />
+		</property>
+		<property name="price" >
+			<column name="price" />
+		</property>
+		<property name="smallImg" >
+			<column name="smallImg" />
+		</property>
+		<property name="bigImg" >
+			<column name="bigImg" />
+		</property>
+		<property name="productState" >
+			<column name="productState"/>
+		</property>
+		<!--<set name="priceList" cascade="all" lazy="false" inverse="true" order-by="theCustomerType asc">
+	 		<key column="theProduct"/>
+	 		<one-to-many class="com.domain.PriceList"/>
+	 	</set>
+	 	--><set name="productType" cascade="all" lazy="false" table="ProductClass">
+	 		<key><column name="theProduct"/></key>
+	 		<many-to-many class="com.domain.ProductType" column="theProductType" />
+	 	</set>
+	 </class>
+</hibernate-mapping>

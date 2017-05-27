@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bean.Notice" table="Notice">
+	
+		<id name="Nno">
+			<generator class="native"/>
+		</id>
+		<property name="title" type ="string"  column="Ntitle"/>
+		<property name="content" type ="string" column="Ncontent"/>
+		<property name="editor" type ="string" column="Neditor"/>
+		<property name="createtime" type ="date" column="NcreateTime"/>
+	<property name="type" type ="int" column="Ntype"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+	<bean id="datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+		<property name="jdbcUrl" value="jdbc:sqlserver://localhost:16699;DatabaseName=DBsnack"/>
+		<property name="user" value="sa"/>
+		<property name="password" value="zhbit"/>
+		<!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+		<property name="initialPoolSize" value="1"/>
+		<!--连接池中保留的最小连接数。-->
+		<property name="minPoolSize" value="1"/>	
+		<!--连接池中保留的最大连接数。Default: 15 -->
+		<property name="maxPoolSize" value="300"/>
+		<!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		<property name="maxIdleTime" value="60"/>	
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		<property name="acquireIncrement" value="5"/>	
+		<!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+		<property name="idleConnectionTestPeriod" value="60"/>
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	     <property name="dataSource" ref="datasource"/>
+		 <property name="mappingResources">
+		    <list>
+		      <value>com/domain/Manager.hbm.xml</value>
+		      <value>com/domain/Customer.hbm.xml</value>
+		      <value>com/domain/Product.hbm.xml</value>
+		      <value>com/domain/ProductType.hbm.xml</value>
+		       <value>com/domain/Consignee.hbm.xml</value>
+		        <value>com/domain/Order.hbm.xml</value>
+		    </list>
+		 </property>
+		 <property name="hibernateProperties">
+		 	<props>
+		 		<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+		 		<prop key="hibernate.hbm2ddl.auto">update</prop>
+		 		<prop key="hibernate.show_sql">true</prop>
+		 		<prop key="hibernate.format_sql">true</prop>
+		 		<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+		 	</props>
+		 </property>
+	</bean> 
+	<!-- 声明式事务配置开始 -->
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="txManager"> 
+	<tx:attributes> 
+	<tx:method name="save*" propagation="REQUIRED"/> 
+	<tx:method name="add*" propagation="REQUIRED"/> 
+	<tx:method name="create*" propagation="REQUIRED"/> 
+	<tx:method name="insert*" propagation="REQUIRED"/> 
+	<tx:method name="*" read-only="true" /> 
+	</tx:attributes> 
+	</tx:advice> 
+
+	<aop:config proxy-target-class="true"> 
+	<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.service..*.*(..))" /> 
+	</aop:config>
+	<!--将Bean交由Spring管理和装配，这里采用注解方式 -->
+	
+	
+</beans>

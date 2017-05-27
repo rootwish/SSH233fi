@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+<!--配置bean -->
+	<!--common 退出登录-->
+	<bean id="ExitAction" class="com.action.ExitAction" scope="prototype"></bean>
+	<!--Product 所有产品-->
+	<bean id="productAction" class="com.action.ProductAction" scope="prototype">
+		<property name="productService" >
+       	<ref bean="ProductServiceImpl"/>
+       	</property>
+       	<property name="manageService" >
+       	<ref bean="manageServiceImpl"/>
+    	</property>
+	</bean>
+		<!--Product 购物车-->
+	<bean id="shoppingCartAction" class="com.action.ShoppingCartAction" scope="prototype">
+		<property name="productService" >
+       	<ref bean="ProductServiceImpl"/>
+       	</property>
+	</bean>
+<!--	Customer 顾客注册	-->
+	<bean id="register" class="com.action.registerAction" scope="prototype">
+		<property name="customerservice" >
+       	<ref bean="CustomerServiceImpl"/>
+       	</property>
+       	<property name="customer" >
+       	<ref bean="Customer"/>
+    	</property>
+	</bean>
+
+	<!--Customer 顾客更新个人信息	-->
+	<bean id="updateInformation" class="com.action.updateInformationAction" scope="prototype">
+		<property name="customerservice" >
+       	<ref bean="CustomerServiceImpl"/>
+       	</property>
+	</bean>
+		<!--
+	Customer 顾客更改密码	
+	<bean id="changePassword" class="com.onlineflowershop.customer.controler.changePasswordAction" scope="prototype">
+		<property name="customerservice" >
+       	<ref bean="CustomerServiceImpl"/>
+       	</property>
+	</bean>
+
+	-->
+	<!--Customer 顾客登录-->
+	<bean id="login" class="com.action.LoginAction" scope="prototype">
+		<property name="customerservice" >
+       	<ref bean="CustomerServiceImpl"/>
+       	</property>
+	</bean>
+	
+	<!--Customer 顾客退出登录
+	<bean id="customerExitAction" class="com.onlineflowershop.customer.controler.customerExitAction" scope="prototype">
+	</bean>
+	
+	Order 所有的省 
+	
+	
+	-->
+	<!--  Order 订单-->
+	<bean id="orderAction" class="com.action.OrderAction" scope="prototype">
+		<property name="orderService" >
+       	<ref bean="orderServiceImpl"/>
+    	</property>
+    	<property name="productService" >
+       	<ref bean="ProductServiceImpl"/>
+    	</property>
+    	<property name="customerservice" >
+       	<ref bean="CustomerServiceImpl"/>
+    	</property>
+    	<property name="order" >
+       	<ref bean="order"/>
+    	</property>
+    	<property name="consignee" >
+       	<ref bean="consignee"/>
+    	</property>
+	</bean>
+	<!--  
+	Order 订单查询
+	<bean id="FindOrderList" class="com.onlineflowershop.order.controler.FindOrderListAction" scope="prototype">
+		<property name="orderService" >
+       	<ref bean="orderServiceImpl"/>
+    	</property>
+    	<property name="customerService" >
+       	<ref bean="CustomerServiceImpl"/>
+    	</property>
+	</bean>
+	
+	Payment 支付订单
+	<bean id="PaymentAction" class="com.onlineflowershop.order.controler.PaymentAction" scope="prototype">
+		<property name="orderService" >
+       	<ref bean="orderServiceImpl"/>
+    	</property>
+    </bean>
+	-->
+	<!--manage 管理员登陆-->
+	<bean id="manageLoginAction" class="com.action.ManageLoginAction" scope="prototype">
+		<property name="manageService" >
+       	<ref bean="manageServiceImpl"/>
+    	</property>
+	</bean>
+	
+	
+	<!-- manage 产品信息 -->
+	<bean id="manageProductAction" class="com.action.ManageProductAction">
+		<property name="manageService" >
+       	<ref bean="manageServiceImpl"/>
+    	</property>
+    	<property name="productService" >
+       	<ref bean="ProductServiceImpl"/>
+       	</property>
+       	<property name="customerservice" >
+       	<ref bean="CustomerServiceImpl"/>
+       	</property>
+    	<property name="product" >
+       	<ref bean="product"/>
+    	</property>
+	</bean>
+		
+	
+</beans>

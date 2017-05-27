@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	 <class name="com.domain.Consignee" table="Consignee" >
+	 <id name="objId" type="java.lang.Integer">
+		    <column name="objId" />
+		    <generator class="native" />
+     </id>
+     <property name="name"></property>
+     <property name="streetName"></property>
+     <property name="roadName"></property>
+     <property name="doorNumber"></property>
+     <property name="zipCode"></property>
+     <property name="email"></property>
+     <property name="mobilePhone"></property>
+     <property name="officePhone"></property>
+     <property name="homePhone"></property>
+     <property name="qqNumber"></property>
+     <many-to-one name="theCustomer" class="com.domain.Customer" column="theCustomer"  />
+	 </class>
+</hibernate-mapping>

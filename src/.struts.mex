@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="default" location="360,45" size="1085,665">
+    <action name="login" location="803,50" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="index.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="login.jsp" />
+      </result>
+    </action>
+    <action name="register" location="803,575" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="index.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="register.jsp" />
+      </result>
+    </action>
+    <action name="updateInformation" location="558,575" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="updateInformation.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="updateInformation.jsp" />
+      </result>
+    </action>
+    <action name="productAction" location="313,575" size="150,62">
+      <result name="aProduct">
+        <resourceEdge source="aProduct" routing="0" target="flowerDetails.jsp" />
+      </result>
+      <result name="productByTypeName">
+        <resourceEdge source="productByTypeName" routing="0" target="productByProductType.jsp" />
+      </result>
+    </action>
+    <action name="ExitAction" location="313,410" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="index.jsp" />
+      </result>
+    </action>
+    <action name="addProductAction" location="313,306" size="150,40" />
+    <action name="updateProductAction" location="68,306" size="150,40" />
+    <action name="allTypeAction" location="73,63" size="150,40" />
+    <action name="managerLogin" location="13,113" size="150,62">
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="manage_login.jsp" />
+      </result>
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="manage_main.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="index.jsp" path="/index.jsp" location="1360,905" size="150,55" />
+  <webResource name="login.jsp" path="/login.jsp" location="205,65" size="150,55" />
+  <webResource name="register.jsp" path="/register.jsp" location="1185,765" size="150,55" />
+  <webResource name="updateInformation.jsp" path="updateInformation.jsp" location="73,240" size="150,55" />
+  <webResource name="flowerDetails.jsp" path="flowerDetails.jsp" location="195,590" size="150,55" />
+  <webResource name="productByProductType.jsp" path="productByProductType.jsp" location="656,765" size="150,55" />
+  <webResource name="index.jsp" path="index.jsp" location="205,415" size="150,55" />
+  <webResource name="manage_login.jsp" path="/manage/manage_login.jsp" location="50,800" size="150,55" />
+  <webResource name="manage_main.jsp" path="/manage/manage_main.jsp" location="350,800" size="150,55" />
+</Struts2Diagram>
+
